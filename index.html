@@ -1,0 +1,1710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vodafone Idea · CSQ Business Value Case · v2</title>
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --panel:#ffffff;
+    --panel-2:#fbfcfe;
+    --line:#e6e9f2;
+    --line-2:#eef1f7;
+    --text:#0e1133;
+    --text-2:#1f2347;
+    --muted:#6b7593;
+    --muted-2:#8b93b0;
+    --vi:#e60000;
+    --vi-2:#b80000;
+    --csq:#7341ff;
+    --csq-2:#4f1ed6;
+    --csq-bg:#f4efff;
+    --good:#0a8f5f;
+    --good-bg:#e6f6ef;
+    --good-2:#16a36e;
+    --warn:#b86b00;
+    --warn-bg:#fff3df;
+    --bad:#c1272d;
+    --bad-bg:#fdecec;
+    --bad-2:#e15660;
+    --gradient:linear-gradient(135deg,#e60000 0%,#7341ff 100%);
+    --gradient-soft:linear-gradient(135deg,rgba(230,0,0,.06) 0%,rgba(115,65,255,.10) 100%);
+    --gradient-csq:linear-gradient(135deg,#7341ff 0%,#b53cd6 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:1320px;margin:0 auto;padding:24px 24px 80px}
+
+  /* TOP BAR */
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+  .brand-row{display:flex;align-items:center;gap:14px}
+  .vi-mark{width:42px;height:42px;border-radius:50%;background:var(--vi);color:#fff;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(230,0,0,.25);letter-spacing:-.5px}
+  .vi-mark::after{content:"";display:block;width:8px;height:8px;border-radius:50%;background:#fff;margin-left:-6px}
+  .topbar h1{margin:0;font-size:17px;font-weight:700;letter-spacing:-.2px}
+  .topbar .sub{color:var(--muted);font-size:12px;margin-top:2px}
+  .version-pill{display:inline-flex;align-items:center;background:var(--gradient);color:#fff;font-size:10px;font-weight:800;letter-spacing:.6px;padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:middle}
+  .controls{display:flex;align-items:center;gap:10px}
+  .ccy{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .ccy button{background:transparent;border:0;padding:7px 16px;font-weight:700;font-size:12px;color:var(--muted);cursor:pointer;letter-spacing:.4px}
+  .ccy button.active{background:var(--text);color:#fff}
+  .reset{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:600;color:var(--text);cursor:pointer}
+  .reset:hover{border-color:var(--csq);color:var(--csq)}
+
+  /* HERO */
+  .hero{
+    position:relative;overflow:hidden;border-radius:22px;
+    background:
+      radial-gradient(900px 320px at 92% -10%, rgba(115,65,255,.18), transparent 60%),
+      radial-gradient(800px 300px at 0% -20%, rgba(230,0,0,.14), transparent 60%),
+      linear-gradient(180deg,#ffffff,#fbfaff);
+    padding:30px 36px;
+    box-shadow:0 6px 30px rgba(20,30,60,.06);
+    border:1px solid var(--line);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+  .hero .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:var(--csq-bg);color:var(--csq-2);font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+  .hero .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--csq)}
+  .hero h2{margin:14px 0 4px;font-size:30px;letter-spacing:-.4px;line-height:1.15;font-weight:800}
+  .hero h2 span{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lede{margin:0;color:var(--muted);font-size:14px;max-width:560px}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+  .hero-stats .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-width:120px}
+  .hero-stats .chip .l{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+  .hero-stats .chip .v{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-top:2px}
+  .hero-big{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 6px 24px rgba(20,30,60,.06);position:relative;overflow:hidden}
+  .hero-big::before{content:"";position:absolute;inset:0;background:var(--gradient-soft);pointer-events:none}
+  .hero-big .l{position:relative;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px;font-weight:800}
+  .hero-big .big{position:relative;font-size:54px;font-weight:900;letter-spacing:-1.5px;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+  .hero-big .sub{position:relative;color:var(--muted);font-size:13px;margin-top:6px}
+  .hero-big .pay{position:relative;display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+  .hero-big .pay-val{font-size:20px;font-weight:800;color:var(--good)}
+  .hero-big .pay-l{font-size:12px;color:var(--muted)}
+
+  /* OPERATIONAL IMPACT STRIP - new in v2 */
+  .ops-impact{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 22px;box-shadow:0 4px 16px rgba(20,30,60,.04)}
+  .ops-impact h3{margin:0 0 6px;font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);font-weight:800}
+  .ops-impact .ops-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:14px}
+  @media (max-width:980px){.ops-impact .ops-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:640px){.ops-impact .ops-grid{grid-template-columns:repeat(2,1fr)}}
+  .ops-item{padding:12px 14px;border-radius:12px;background:#fafbff;border:1px solid var(--line)}
+  .ops-item .ico{font-size:18px;line-height:1}
+  .ops-item .lab{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-top:6px}
+  .ops-item .va{font-size:17px;font-weight:800;letter-spacing:-.2px;margin-top:3px}
+  .ops-item .ba{font-size:11px;color:var(--muted);margin-top:2px}
+  .ops-item .arrow{color:var(--good);font-weight:800;margin:0 4px}
+
+  /* FORRESTER STRIP */
+  .forrester{margin-top:18px;border-radius:14px;background:#0e1133;color:#fff;padding:14px 22px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;box-shadow:0 6px 20px rgba(14,17,51,.18)}
+  .forrester .source{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a5a8c2;font-weight:700}
+  .forrester .item{display:flex;flex-direction:column;line-height:1.2}
+  .forrester .item b{font-size:18px;font-weight:800;letter-spacing:-.2px;color:#fff}
+  .forrester .item span{font-size:11px;color:#a5a8c2}
+  .forrester .sep{width:1px;height:30px;background:#2a2f5a}
+
+  /* TABS */
+  .tabs{display:flex;gap:6px;margin:32px 0 18px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{background:transparent;border:0;padding:12px 18px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;letter-spacing:-.1px;white-space:nowrap}
+  .tabs button.active{color:var(--csq);border-bottom-color:var(--csq)}
+  .tabs button:hover{color:var(--text)}
+  .tab-pane{display:none}
+  .tab-pane.active{display:block}
+
+  /* CONTRIBUTION BAR */
+  .contrib{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:24px}
+  .contrib h3{margin:0 0 4px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+  .contrib .stacked{display:flex;height:36px;border-radius:8px;overflow:hidden;margin-top:10px;box-shadow:inset 0 0 0 1px var(--line)}
+  .contrib .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11.5px;transition:flex .3s ease}
+  .contrib .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+  .contrib .legend .li{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text)}
+  .contrib .legend .sw{width:12px;height:12px;border-radius:3px}
+  .seg-c1{background:#e60000}.seg-c2{background:#f06d00}.seg-c3{background:#fcb900}
+  .seg-c4{background:#15a47b}.seg-c5{background:#1ea7d6}.seg-c6{background:#7341ff}.seg-c7{background:#b53cd6}
+
+  /* RICH CARD ===================== */
+  .rich-card{
+    background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    box-shadow:0 1px 0 rgba(20,30,60,.02), 0 10px 28px rgba(20,30,60,.05);
+    margin-bottom:22px;
+  }
+  .rc-head{
+    padding:22px 26px;
+    background:linear-gradient(135deg,rgba(230,0,0,.04) 0%,rgba(115,65,255,.06) 100%);
+    border-bottom:1px solid var(--line-2);
+    display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;
+  }
+  .rc-head .title-block{display:flex;align-items:center;gap:14px}
+  .rc-head .ico{
+    width:48px;height:48px;border-radius:12px;
+    background:var(--gradient);color:#fff;border:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;font-weight:900;letter-spacing:-.4px;flex-shrink:0;
+    box-shadow:0 6px 16px rgba(115,65,255,.28);
+  }
+  #tab-gaps .moscard .brand .logo{font-size:14px;font-weight:800;letter-spacing:.6px;padding:6px}
+  .rc-head .num{font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:6px;display:inline-block}
+  .rc-head h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.2px;line-height:1.2}
+  .rc-head .subtitle{color:var(--muted);font-size:13px;margin-top:3px;font-weight:500}
+  .rc-head .head-value{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;text-align:right;min-width:170px;
+    box-shadow:0 4px 14px rgba(20,30,60,.06);
+  }
+  .rc-head .head-value .l{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:800}
+  .rc-head .head-value .v{font-size:28px;font-weight:900;letter-spacing:-.5px;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.05;margin-top:3px}
+  .rc-head .head-value .sub{color:var(--muted);font-size:11px;margin-top:3px}
+  @media (max-width:780px){
+    .rc-head{grid-template-columns:1fr}
+    .rc-head .head-value{text-align:left}
+  }
+
+  .rc-features{display:flex;flex-wrap:wrap;gap:6px;padding:14px 26px;background:#fcfcff;border-bottom:1px solid var(--line-2)}
+  .rc-features .ftl{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.4px;margin-right:6px;display:flex;align-items:center}
+  .feat{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:#eef2ff;color:#3730a3;border:1px solid #ddd6fe}
+  .feat::before{content:"●";color:#7341ff;font-size:8px}
+  .feat.alt{background:#fef3c7;color:#92400e;border-color:#fde68a}
+  .feat.alt::before{color:#d97706}
+  .feat.alt2{background:#dcfce7;color:#166534;border-color:#bbf7d0}
+  .feat.alt2::before{color:#15a47b}
+
+  /* THE BRIDGE */
+  .bridge-section{padding:24px 26px;border-bottom:1px solid var(--line-2)}
+  .section-label{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted-2);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+  .section-label::after{content:"";flex:1;height:1px;background:var(--line-2)}
+  .bridge{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:28px;position:relative}
+  @media (max-width:980px){.bridge{grid-template-columns:1fr 1fr;gap:16px 28px}}
+  @media (max-width:600px){.bridge{grid-template-columns:1fr;gap:14px}}
+  .bridge-step{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;position:relative;
+    transition:transform .2s ease;
+  }
+  .bridge-step:hover{transform:translateY(-2px)}
+  .bridge-step::after{
+    content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);
+    font-size:22px;color:var(--csq);font-weight:800;
+  }
+  .bridge-step:nth-child(4n)::after,.bridge-step:last-child::after{display:none}
+  @media (max-width:980px){
+    .bridge-step:nth-child(2n)::after{display:none}
+    .bridge-step:nth-child(2n+1)::after{content:"→"}
+  }
+  @media (max-width:600px){
+    .bridge-step::after{display:none !important}
+  }
+  .bridge-step .step-label{
+    font-size:9.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;
+    color:var(--csq);background:var(--csq-bg);padding:3px 8px;border-radius:6px;display:inline-block
+  }
+  .bridge-step .step-body{font-size:13px;font-weight:600;margin-top:9px;line-height:1.45;color:var(--text)}
+  .bridge-step.feat-step{border-color:#ddd6fe;background:#fafaff}
+  .bridge-step.outcome{background:linear-gradient(135deg,rgba(230,0,0,.06),rgba(115,65,255,.10));border-color:var(--csq)}
+  .bridge-step.outcome .step-label{background:var(--gradient);color:#fff}
+  .bridge-step.outcome .step-body{font-weight:800;color:var(--csq-2);font-size:14px}
+
+  /* OPERATIONAL METRICS */
+  .ops-section{padding:24px 26px;border-bottom:1px solid var(--line-2);background:#fcfcff}
+  .ops-table{display:flex;flex-direction:column;gap:6px}
+  .ops-row{
+    display:grid;grid-template-columns:1.4fr 0.7fr 2.4fr 0.7fr 0.95fr;
+    gap:14px;align-items:center;padding:11px 14px;
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+  }
+  @media (max-width:780px){
+    .ops-row{grid-template-columns:1fr 1fr;gap:6px 14px}
+    .ops-row .barwrap{grid-column:1 / -1;order:5}
+    .ops-row .label{grid-column:1 / -1}
+    .ops-row .delta{justify-self:end}
+  }
+  .ops-row .label{font-weight:700;font-size:13px;color:var(--text)}
+  .ops-row .label small{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:1px}
+  .ops-row .from{font-weight:800;font-size:13.5px;color:var(--bad);text-align:center;background:var(--bad-bg);padding:5px 8px;border-radius:7px;border:1px solid #f5c2c2}
+  .ops-row .to{font-weight:800;font-size:13.5px;color:var(--good);text-align:center;background:var(--good-bg);padding:5px 8px;border-radius:7px;border:1px solid #bfead8}
+  .ops-row .barwrap{display:flex;flex-direction:column;gap:5px}
+  .ops-row .bar{height:7px;border-radius:5px;background:#eef1f7;overflow:hidden;position:relative}
+  .ops-row .bar .fill{height:100%;border-radius:5px;transition:width .4s ease}
+  .ops-row .bar .fill.before{background:linear-gradient(90deg,#fecaca,#e15660)}
+  .ops-row .bar .fill.after{background:linear-gradient(90deg,#bbf7d0,#16a36e)}
+  .ops-row .delta{
+    font-weight:800;font-size:12px;text-align:right;padding:5px 10px;border-radius:999px;
+    background:var(--good-bg);color:var(--good-2);border:1px solid #bfead8;
+    white-space:nowrap;
+  }
+  .ops-row .delta.warn{background:var(--warn-bg);color:var(--warn);border-color:#f3d8a4}
+
+  /* BUSINESS OUTCOMES */
+  .outcomes-section{padding:24px 26px;border-bottom:1px solid var(--line-2)}
+  .outcomes-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  @media (max-width:780px){.outcomes-grid{grid-template-columns:1fr}}
+  .outcome-card{
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden;
+  }
+  .outcome-card.primary{border-color:var(--csq);background:linear-gradient(135deg,rgba(115,65,255,.06),rgba(230,0,0,.04))}
+  .outcome-card .label{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;font-weight:800}
+  .outcome-card .value{font-size:22px;font-weight:900;letter-spacing:-.3px;line-height:1.1;margin-top:2px}
+  .outcome-card.primary .value{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .outcome-card .desc{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+
+  /* PROOF */
+  .proof-section{padding:18px 26px;border-bottom:1px solid var(--line-2)}
+  .proof-card{
+    background:#fafbff;border:1px dashed #d4d8e8;border-radius:12px;padding:14px 18px;
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .proof-card .logo{
+    width:52px;height:52px;border-radius:10px;background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:11px;letter-spacing:.3px;text-align:center;line-height:1.1;flex-shrink:0;padding:4px;
+  }
+  .proof-card .logo.m1{background:#e6f0ff;color:#003a86}
+  .proof-card .logo.vmo2{background:#e8e4ff;color:#3a116d}
+  .proof-card .logo.orange{background:#fff0e0;color:#cc5500}
+  .proof-card .logo.verizon{background:#fde6e6;color:#b80000}
+  .proof-card .logo.surla{background:#e8f5e9;color:#1b5e20}
+  .proof-card .logo.gopro{background:#fff8e0;color:#7a5400}
+  .proof-card .logo.spec{background:#e0f0ff;color:#003872}
+  .proof-card .logo.rakuten{background:#ffe0e0;color:#a30000}
+  .proof-card .logo.forrester{background:linear-gradient(135deg,#0e1133,#3a3a6a);color:#fff}
+  .proof-card .body{flex:1;min-width:0}
+  .proof-card .body .stat{font-size:14px;font-weight:800;color:var(--text);line-height:1.3}
+  .proof-card .body .stat em{font-style:normal;color:var(--vi)}
+  .proof-card .body .stat .csqpurp{color:var(--csq-2)}
+  .proof-card .body .stat .gd{color:var(--good)}
+  .proof-card .body .note{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+  .proof-card .body .src{font-size:11px;color:var(--muted);margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .proof-card .body .src a{
+    display:inline-flex;align-items:center;gap:6px;
+    color:#fff;background:var(--gradient-csq);
+    text-decoration:none;font-weight:700;font-size:12px;
+    padding:6px 12px;border-radius:8px;
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    box-shadow:0 2px 8px rgba(115,65,255,.20);
+  }
+  .proof-card .body .src a:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(115,65,255,.32);filter:brightness(1.05)}
+  
+  .proof-card .body .src a::after{content:"↗";font-weight:900;margin-left:2px}
+
+  /* EDIT PANEL */
+  .edit-section{padding:14px 26px;background:#fafbff}
+  .edit-toggle{
+    background:transparent;border:1px solid var(--line);border-radius:8px;padding:9px 14px;font-size:12px;font-weight:700;color:var(--text);cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;width:100%;
+  }
+  .edit-toggle:hover{background:#fff;border-color:var(--csq)}
+  .edit-toggle .caret{transition:transform .2s ease}
+  .edit-toggle.open .caret{transform:rotate(180deg)}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;gap:10px;flex-direction:column;margin-top:10px}
+  .panel.open{display:flex}
+  .panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+  @media (max-width:780px){.panel-grid{grid-template-columns:1fr}}
+  .input-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0}
+  .input-row label{font-size:12px;font-weight:600;color:var(--text);flex:1;min-width:0}
+  .input-row label small{display:block;color:var(--muted);font-size:10.5px;font-weight:500;margin-top:1px}
+  .input-row input[type=range]{flex:1.2;accent-color:var(--csq);min-width:80px}
+  .input-row .val{min-width:62px;text-align:right;font-weight:800;font-size:12.5px;color:var(--csq-2);background:#fafbff;border:1px solid var(--line);border-radius:6px;padding:3px 6px}
+
+  /* CAPABILITY TABLE */
+  .cap{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .cap-head,.cap-row{display:grid;grid-template-columns:1.2fr 1.3fr 1.3fr}
+  .cap-head{background:#fafbff;border-bottom:2px solid var(--line)}
+  .cap-head > div{padding:14px 18px;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+  .cap-head .csqcol{background:var(--csq-bg);color:var(--csq-2)}
+  .cap-row{border-top:1px solid var(--line-2)}
+  .cap-row > div{padding:18px}
+  .cap-row .feat-name{font-weight:800;font-size:14px;display:flex;align-items:center;gap:10px}
+  .cap-row .feat-name .num{width:24px;height:24px;border-radius:50%;background:var(--csq-bg);color:var(--csq-2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .cap-row .adobe-side{background:#fef6f6;color:#5a1414;font-size:13px;border-left:3px solid #f5c2c2}
+  .cap-row .csq-side{background:#f4fff8;font-size:13px;border-left:3px solid #15a47b}
+  .cap-row .x{color:#c1272d;font-weight:900;margin-right:6px}
+  .cap-row .check{color:#15a47b;font-weight:900;margin-right:6px}
+
+  /* MOSAIC */
+  .mosaic{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  @media (max-width:980px){.mosaic{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.mosaic{grid-template-columns:1fr}}
+  .moscard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 0 rgba(20,30,60,.02), 0 6px 18px rgba(20,30,60,.04);position:relative;overflow:hidden}
+  .moscard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient)}
+  .moscard .brand{display:flex;align-items:center;gap:10px}
+  .moscard .brand .logo{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:10.5px;letter-spacing:.3px;text-align:center;line-height:1.1;flex-shrink:0;padding:4px;border:1px solid var(--line);background:#fff}
+  .moscard .brand .meta b{display:block;font-size:14px;font-weight:800}
+  .moscard .brand .meta small{color:var(--muted);font-size:11px}
+  .moscard .impact{font-size:24px;font-weight:900;letter-spacing:-.5px;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+  .moscard .desc{font-size:13px;color:var(--text);line-height:1.5}
+  .moscard .src{
+    font-size:11px;color:var(--muted);margin-top:auto;
+    padding-top:10px;border-top:1px dashed var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;
+  }
+  .moscard .src a{
+    display:inline-flex;align-items:center;gap:5px;
+    color:#fff;background:var(--gradient-csq);
+    text-decoration:none;font-weight:700;font-size:11.5px;
+    padding:5px 10px;border-radius:7px;
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    box-shadow:0 2px 6px rgba(115,65,255,.20);
+  }
+  .moscard .src a:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(115,65,255,.32);filter:brightness(1.05)}
+  .moscard .src a::after{content:"↗";font-weight:900;margin-left:2px}
+  .moscard{transition:transform .2s ease, box-shadow .2s ease}
+  .moscard:hover{transform:translateY(-3px);box-shadow:0 1px 0 rgba(20,30,60,.02), 0 14px 28px rgba(20,30,60,.08)}
+
+  /* SECTION HEADS */
+  .sec-head{margin:0 0 14px}
+  .sec-head h2{margin:0;font-size:22px;font-weight:800;letter-spacing:-.3px}
+  .sec-head p{margin:4px 0 0;color:var(--muted);font-size:13.5px;max-width:680px}
+
+  /* FOOTER */
+  .footer{margin-top:36px;color:var(--muted);font-size:12px;text-align:center}
+  .footer b{color:var(--text)}
+  .footer .links{margin-top:6px;font-size:11.5px}
+  .footer .links a{color:var(--muted);text-decoration:underline;margin:0 6px}
+
+  @keyframes pop{0%{transform:scale(.97);opacity:0}100%{transform:scale(1);opacity:1}}
+  .pop{animation:pop .35s ease}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="brand-row">
+      <div class="vi-mark">Vi</div>
+      <div>
+        <h1>Vodafone Idea · Contentsquare Business Value Case <span class="version-pill">v2 · Feature → Outcome</span></h1>
+        <div class="sub">Replacing Adobe Analytics · CSQ Product Analytics + Digital Experience Analytics · 2.5B sessions / year</div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ccy" id="ccyToggle">
+        <button data-c="INR" class="active">₹ INR</button>
+        <button data-c="USD">$ USD</button>
+      </div>
+      <button class="reset" id="resetBtn">↻ Reset assumptions</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Each benefit shows the feature that drives it, the operational metric that moves, and the business outcome that follows.</span>
+        <h2>Adobe shows you <b>what</b>. <span>Contentsquare shows you why</span> - and gets you to the fix sooner.</h2>
+        <p class="lede">This is not a list of savings. It's a chain of cause and effect: a Contentsquare feature drives a measurable operational change (time to insight, MTTR, queue depth, coverage), which produces a business outcome (revenue, hours, capacity). Each card walks that chain.</p>
+        <div class="hero-stats">
+          <div class="chip"><div class="l">Per 1,000 sessions</div><div class="v" id="perK">-</div></div>
+          <div class="chip"><div class="l">Top contributor</div><div class="v" id="topBenefit">-</div></div>
+          <div class="chip"><div class="l">Operational gains</div><div class="v">7 KPIs ↑</div></div>
+          <div class="chip"><div class="l">Customer refs</div><div class="v">12 verified</div></div>
+        </div>
+      </div>
+      <div class="hero-big">
+        <div class="l">Total annual incremental value</div>
+        <div class="big" id="heroTotal">-</div>
+        <div class="sub">Productivity + revenue + capability gains, net of Adobe baseline</div>
+        <div class="pay">
+          <div class="pay-val" id="payback">6 mo</div>
+          <div class="pay-l">payback period (Forrester TEI composite for Contentsquare)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATIONAL IMPACT STRIP -->
+    <div class="ops-impact">
+      <h3>Operational impact across Vi · the metrics that move</h3>
+      <div class="ops-grid">
+        <div class="ops-item">
+          
+          <div class="lab">MTTR · Incidents</div>
+          <div class="va">4.2 h <span class="arrow">→</span> 1.2 h</div>
+          <div class="ba">↓ 71% - Find &amp; Fix + Replay</div>
+        </div>
+        <div class="ops-item">
+          
+          <div class="lab">Time to Insight</div>
+          <div class="va">3 d <span class="arrow">→</span> 4 h</div>
+          <div class="ba">↓ 94% - Sense Analyst</div>
+        </div>
+        <div class="ops-item">
+          
+          <div class="lab">Event Coverage</div>
+          <div class="va">80% <span class="arrow">→</span> 100%</div>
+          <div class="ba">+500M sessions w/ full data</div>
+        </div>
+        <div class="ops-item">
+          
+          <div class="lab">Release Cycle</div>
+          <div class="va">4 w <span class="arrow">→</span> 3.5 w</div>
+          <div class="ba">↓ 12.5% - no tagging gate</div>
+        </div>
+        <div class="ops-item">
+          
+          <div class="lab">Stakeholder Wait</div>
+          <div class="va">3 d <span class="arrow">→</span> 30 m</div>
+          <div class="ba">↓ 99% - Sense NL query</div>
+        </div>
+        <div class="ops-item">
+          
+          <div class="lab">Self-Serve Users</div>
+          <div class="va">3 <span class="arrow">→</span> 28</div>
+          <div class="ba">+830% - Sense democratises</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORRESTER -->
+    <div class="forrester">
+      <div class="source">Forrester TEI · CSQ Composite</div>
+      <div class="item"><b>602%</b><span>3-yr ROI</span></div>
+      <div class="sep"></div>
+      <div class="item"><b>6 mo</b><span>Payback</span></div>
+      <div class="sep"></div>
+      <div class="item"><b>$3.32M</b><span>Web optimization profit</span></div>
+      <div class="sep"></div>
+      <div class="item"><b>$3.28M</b><span>Friction-driven income recovered</span></div>
+      <div class="sep"></div>
+      <div class="item"><b>2,914 h</b><span>Analyst productivity saved</span></div>
+      <div class="sep"></div>
+      <div class="item"><b>$805K</b><span>Tool consolidation savings</span></div>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs" id="tabs">
+    <button class="active" data-tab="value">Value Delivered · with full feature-to-outcome bridge</button>
+    <button data-tab="gaps">Capability Gaps vs Adobe</button>
+    <button data-tab="proof">Customer Proof</button>
+  </div>
+
+  <!-- ─── TAB 1 · VALUE DELIVERED ─── -->
+  <div class="tab-pane active" id="tab-value">
+
+    <div class="contrib">
+      <h3>How the value breaks down</h3>
+      <div class="stacked" id="stacked"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <!-- ═══════════════════ CARD 1 · MANUAL TAGGING ═══════════════════ -->
+    <article class="rich-card" data-key="tagging">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">01</div>
+          <div>
+            <span class="num">Benefit 01</span>
+            <h3>Eliminate Manual Event Tagging</h3>
+            <div class="subtitle">From a tagging-plan dependency to autocaptured events on every release</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual saving</div>
+          <div class="v" data-val="tagging">-</div>
+          <div class="sub">~2.5 FTE freed for analysis work</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features driving this →</span>
+        <span class="feat">Smart Capture</span>
+        <span class="feat">Retroactive Analysis</span>
+        <span class="feat">UI-based Event Labelling</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge · feature → mechanism → behaviour → outcome</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Smart Capture (autocapture)</b> - CSQ SDK records every click, tap, swipe, scroll, form interaction & error by default.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">No tagging plan, no instrumentation review. Events are <b>labelled retroactively in the UI</b>, not in code.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">Devs ship features <b>without a tagging dependency</b>. Analysts query historical sessions for any event, even pre-feature-launch.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">~5,200 engineer hours freed/yr · ~2.5 FTE redeployed · zero releases blocked by tagging.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved · today (Adobe) → with CSQ</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">Tagging cycle time<small>per release - plan → impl → QA → sign-off</small></div>
+            <div class="from">2 weeks</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:5%"></div></div></div>
+            <div class="to">~0</div>
+            <div class="delta">↓ ~100%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">% engineer time on tagging<small>across 6 analytics engineers</small></div>
+            <div class="from">70%</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:70%"></div></div><div class="bar"><div class="fill after" style="width:28%"></div></div></div>
+            <div class="to">28%</div>
+            <div class="delta">↓ 60%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Releases blocked by tagging<small>per year</small></div>
+            <div class="from">12 / yr</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:0"></div></div></div>
+            <div class="to">0 / yr</div>
+            <div class="delta">↓ 100%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Productivity saving</div>
+            <div class="value" data-val="tagging">-</div>
+            <div class="desc">Recovered analytics-engineering capacity, repriced as INR</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Engineer hours freed</div>
+            <div class="value" data-ops="taggingHours">-</div>
+            <div class="desc">Available for proactive analysis, segmentation, and BAU support</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">FTE-equivalents</div>
+            <div class="value" data-ops="taggingFte">-</div>
+            <div class="desc">Of headcount Vi can redeploy without rehiring</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo forrester">Forrester<br>TEI</div>
+          <div class="body">
+            <div class="stat">Forrester TEI composite: <em>2,914 productivity hours saved</em> + <em class="csqpurp">$805K tool consolidation</em></div>
+            <div class="note">Independent 3-year study, 2023. The productivity recovery - engineers re-deployed off instrumentation work - is the largest line item in CSQ's documented customer ROI.</div>
+            <div class="src">Source: <a href="https://contentsquare.com/blog/forrester-total-economic-impact-study-finds-602-roi-with-contentsquare/" target="_blank">Forrester TEI</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>FTEs on tagging</label><input type="range" min="1" max="15" value="6" data-input="tagging.ftes"><span class="val" data-display="tagging.ftes">6</span></div>
+          <div class="input-row"><label>% time on tagging</label><input type="range" min="10" max="100" value="70" data-input="tagging.timePct"><span class="val" data-display="tagging.timePct">70%</span></div>
+          <div class="input-row"><label>Salary <small>USD/yr loaded</small></label><input type="range" min="10000" max="40000" step="1000" value="20000" data-input="tagging.salary"><span class="val" data-display="tagging.salary">$20K</span></div>
+          <div class="input-row"><label>Effort reduction</label><input type="range" min="20" max="90" value="60" data-input="tagging.reduction"><span class="val" data-display="tagging.reduction">60%</span></div>
+        </div></div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════ CARD 2 · AI INSIGHTING ═══════════════════ -->
+    <article class="rich-card" data-key="insighting">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">02</div>
+          <div>
+            <span class="num">Benefit 02</span>
+            <h3>AI-Powered Insighting - Time-to-Insight collapses</h3>
+            <div class="subtitle">From 3 days of manual data wrangling to a 4-hour AI-assisted analysis cycle</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual saving</div>
+          <div class="v" data-val="insighting">-</div>
+          <div class="sub">+167% analyst report throughput</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features →</span>
+        <span class="feat">Sense Analyst (AI agent)</span>
+        <span class="feat">AI Session Summaries</span>
+        <span class="feat alt">Anomaly Detection</span>
+        <span class="feat alt2">Pre-built Templates</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge · feature → mechanism → behaviour → outcome</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Sense Analyst</b> - an AI agent that reads up to 100 sessions, summarises behaviour, and writes optimisation recommendations.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">No SQL. No dashboard build. Analyst asks a question; Sense returns a synthesis with visuals, anomalies & a draft recommendation.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">Analysts skip 90% of data-prep, jump directly to interpretation, validation & stakeholder discussion.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">Time-to-insight ↓ 94% · 100 sessions reviewed per analysis (was ~5) · ~2,500 analyst hours freed/yr.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">Time to insight (TTI)<small>request → answer with context</small></div>
+            <div class="from">3 days</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:6%"></div></div></div>
+            <div class="to">4 hours</div>
+            <div class="delta">↓ 94%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Sessions reviewed per analysis<small>Sense Analyst summarises up to 100 at once</small></div>
+            <div class="from">5</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:5%"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">100</div>
+            <div class="delta">×20</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Reports per analyst per week<small>throughput proxy</small></div>
+            <div class="from">1.5</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:38%"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">4</div>
+            <div class="delta">+167%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Productivity saving</div>
+            <div class="value" data-val="insighting">-</div>
+            <div class="desc">3 analysts × 80% time × 50% efficiency × INR equivalent</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Analyst hours freed</div>
+            <div class="value" data-ops="insightingHours">-</div>
+            <div class="desc">For proactive segmentation, deep-dive analyses, A/B test design</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Capacity for strategic work</div>
+            <div class="value">+50%</div>
+            <div class="desc">Time recovered from data-prep redirected to higher-leverage analysis</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo m1">M1<br>Telco</div>
+          <div class="body">
+            <div class="stat">M1 (Singapore): <em class="csqpurp">"real game-changer in getting insights at a faster pace"</em></div>
+            <div class="note">Andy Ang, ex-Performance &amp; Digital Marketing Lead, M1 - direct telco peer with same Adobe-replacement profile.</div>
+            <div class="src">Source: <a href="https://contentsquare.com/blog/how-m1-used-contentsquare-to-drive-143-monthly-conversion/" target="_blank">CSQ blog - M1 case study</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>Insights team FTEs</label><input type="range" min="1" max="10" value="3" data-input="insighting.ftes"><span class="val" data-display="insighting.ftes">3</span></div>
+          <div class="input-row"><label>% time on insighting</label><input type="range" min="20" max="100" value="80" data-input="insighting.timePct"><span class="val" data-display="insighting.timePct">80%</span></div>
+          <div class="input-row"><label>Salary <small>USD/yr</small></label><input type="range" min="10000" max="40000" step="1000" value="20000" data-input="insighting.salary"><span class="val" data-display="insighting.salary">$20K</span></div>
+          <div class="input-row"><label>AI efficiency gain</label><input type="range" min="20" max="80" value="50" data-input="insighting.efficiency"><span class="val" data-display="insighting.efficiency">50%</span></div>
+        </div></div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════ CARD 3 · 100% COVERAGE ═══════════════════ -->
+    <article class="rich-card" data-key="coverage">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">03</div>
+          <div>
+            <span class="num">Benefit 03</span>
+            <h3>100% Event Coverage - friction Adobe cannot see</h3>
+            <div class="subtitle">Every error, every impression, every micro-interaction - no impression cap, no missed events</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual revenue uplift</div>
+          <div class="v" data-val="coverage">-</div>
+          <div class="sub">+500M sessions w/ full diagnostics</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features →</span>
+        <span class="feat">Smart Capture</span>
+        <span class="feat alt2">Error Analysis</span>
+        <span class="feat alt">Find &amp; Fix Real-Time</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Smart Capture</b> - session-based pricing, no impression cap. Every event in every session is recorded.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">Adobe's impression model forces tag pruning to stay in budget. CSQ removes the incentive: capture everything, always.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">PMs spot friction Adobe never reported - OTP errors, payment redirect failures, dead-clicks on key elements.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">+500M sessions w/ full diagnostic data · ~25% more friction issues surfaced · +0.2% conversion lift on $60M base.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">% events captured per session<small>impression-cap headroom</small></div>
+            <div class="from">80%</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:80%"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">100%</div>
+            <div class="delta">+25%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Sessions w/ full diagnostic data<small>annual</small></div>
+            <div class="from">2.0 B</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:80%"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">2.5 B</div>
+            <div class="delta">+500M</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Mean time to detect (MTTD) anomaly<small>vs Adobe sampled view</small></div>
+            <div class="from">2 days</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:6%"></div></div></div>
+            <div class="to">~2 h</div>
+            <div class="delta">↓ 96%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Recovered revenue (annual)</div>
+            <div class="value" data-val="coverage">-</div>
+            <div class="desc">0.2% conv lift × $60M digital revenue base</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Additional sessions w/ full data</div>
+            <div class="value">+500 M</div>
+            <div class="desc">Of Vi's 2.5B annual sessions previously sampled</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Friction issues surfaced</div>
+            <div class="value">+25%</div>
+            <div class="desc">Estimated based on Forrester TEI: ~1 in 6 friction issues escape Adobe detection</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo verizon">Verizon</div>
+          <div class="body">
+            <div class="stat">Verizon: <em class="csqpurp">Find &amp; Fix</em> caught errors affecting <em>thousands of sessions</em> during peak holiday traffic - invisible in sampled views</div>
+            <div class="note">Krish Karmohan, Director Software Dev. Read-across: Vi's recharge spikes on payday weekends, cricket finals, festival days.</div>
+            <div class="src">Source: <a href="https://contentsquare.com/blog/contentsquare-helps-brands-boost-site-performance-revenue-with-real-time-digital-experience-insights-enhances-find-fix-solution/" target="_blank">CSQ press - Find &amp; Fix</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>Digital revenue base <small>USD/yr</small></label><input type="range" min="20000000" max="200000000" step="5000000" value="60000000" data-input="coverage.revenueBase"><span class="val" data-display="coverage.revenueBase">$60M</span></div>
+          <div class="input-row"><label>Conversion lift</label><input type="range" min="0.05" max="3" step="0.05" value="0.2" data-input="coverage.lift"><span class="val" data-display="coverage.lift">0.20%</span></div>
+        </div></div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════ CARD 4 · RELEASE CYCLES ═══════════════════ -->
+    <article class="rich-card" data-key="release">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">04</div>
+          <div>
+            <span class="num">Benefit 04</span>
+            <h3>Faster Release Cycles - no tagging gate</h3>
+            <div class="subtitle">Dev ships first, data flows immediately, labels happen after</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual dev-time saving</div>
+          <div class="v" data-val="release">-</div>
+          <div class="sub">6 weeks of earlier value capture/yr</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features →</span>
+        <span class="feat">Smart Capture</span>
+        <span class="feat">Post-hoc Labelling</span>
+        <span class="feat alt2">Retroactive Analysis</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Smart Capture + Retroactive Analysis</b> - events are captured automatically, labelled in the UI after release.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">Tagging plan is removed from the release pipeline. Analysts label new pages/CTAs post-hoc in the CSQ UI, with full backfill.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">Devs ship the moment QA passes - no waiting on tagging sign-off. Analysts label without dev intervention.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">0.5w shaved off every release × 12/yr = 6 weeks of earlier feature value capture · ~1,920 dev hours saved/yr.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">Sprint-to-ship time<small>feature dev complete → live</small></div>
+            <div class="from">4 weeks</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:88%"></div></div></div>
+            <div class="to">3.5 weeks</div>
+            <div class="delta">↓ 12.5%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Tagging-plan reviews per release<small>analyst + dev + QA hand-offs</small></div>
+            <div class="from">3</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:0"></div></div></div>
+            <div class="to">0</div>
+            <div class="delta">↓ 100%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Earlier feature value capture<small>cumulative across 12 releases</small></div>
+            <div class="from">0 w</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:0"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">6 w / yr</div>
+            <div class="delta">+6 w</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Dev productivity saving</div>
+            <div class="value" data-val="release">-</div>
+            <div class="desc">Dev-team hours reclaimed from tagging hand-offs</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Dev hours saved</div>
+            <div class="value" data-ops="releaseHours">-</div>
+            <div class="desc">Across 8 affected devs × 12 releases × 0.5w</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Earlier value capture</div>
+            <div class="value">6 w</div>
+            <div class="desc">Of cumulative feature uptime gained each year</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo surla">Sur La<br>Table</div>
+          <div class="body">
+            <div class="stat">Sur La Table migrated <em>from Adobe Analytics to CSQ</em> → <em class="gd">+12% PDP views, +6% overall conversion</em></div>
+            <div class="note">Direct precedent for the migration journey Vi is considering. Same pattern: faster shipping, faster insight, better outcomes.</div>
+            <div class="src">Source: <a href="https://contentsquare.com/blog/contentsquare-vs-adobe/" target="_blank">CSQ vs Adobe - migration case study</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>Releases per year</label><input type="range" min="4" max="24" value="12" data-input="release.releases"><span class="val" data-display="release.releases">12</span></div>
+          <div class="input-row"><label>Dev team affected</label><input type="range" min="2" max="20" value="8" data-input="release.devs"><span class="val" data-display="release.devs">8</span></div>
+          <div class="input-row"><label>Weeks saved per release</label><input type="range" min="0.1" max="3" step="0.1" value="0.5" data-input="release.weeks"><span class="val" data-display="release.weeks">0.5w</span></div>
+          <div class="input-row"><label>Dev salary <small>USD/yr</small></label><input type="range" min="15000" max="60000" step="1000" value="28000" data-input="release.devSalary"><span class="val" data-display="release.devSalary">$28K</span></div>
+        </div></div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════ CARD 5 · AI SELF-SERVE ═══════════════════ -->
+    <article class="rich-card" data-key="selfserve">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">05</div>
+          <div>
+            <span class="num">Benefit 05</span>
+            <h3>AI Self-Serve - democratised analytics</h3>
+            <div class="subtitle">PMs and business leads answer their own questions in minutes, not weeks</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual value unlocked</div>
+          <div class="v" data-val="selfserve">-</div>
+          <div class="sub">65% of queue deflected to AI</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features →</span>
+        <span class="feat">Sense (NL query)</span>
+        <span class="feat alt">AI Summaries</span>
+        <span class="feat alt2">Self-Serve Dashboards</span>
+        <span class="feat">Templates Library</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Sense (natural-language query)</b> + drag-drop journeys + telco-specific templates.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">A PM types "Why did postpaid plan conversion drop in Maharashtra last week?" Sense returns a synthesis with chart, drivers, and recommendations.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">Stakeholders self-serve in minutes; analysts only step in for complex investigations.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">Stakeholder wait time ↓ 99% · queue depth ↓ 65% · self-serve users ×9 (3 → 28) · business velocity multiplied.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">Stakeholder wait time<small>question asked → answer received</small></div>
+            <div class="from">3 days</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:1%"></div></div></div>
+            <div class="to">~30 min</div>
+            <div class="delta">↓ 99%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Ad-hoc analyst queue depth<small>active open requests, average</small></div>
+            <div class="from">30</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:35%"></div></div></div>
+            <div class="to">~11</div>
+            <div class="delta">↓ 65%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Active self-serve users<small>analysts + business stakeholders</small></div>
+            <div class="from">3</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:11%"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">28</div>
+            <div class="delta">×9</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Productivity unlocked</div>
+            <div class="value" data-val="selfserve">-</div>
+            <div class="desc">Analyst hours + stakeholder hours saved, repriced</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Analyst hours freed</div>
+            <div class="value" data-ops="selfserveAnalystHours">-</div>
+            <div class="desc">Redirected from ad-hoc queue clearing to strategic work</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Stakeholder hours saved</div>
+            <div class="value" data-ops="selfserveStakeHours">-</div>
+            <div class="desc">25 PMs/marketers × 6h/mo wait → real-time answers</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo orange">orange<sup>™</sup></div>
+          <div class="body">
+            <div class="stat">Orange / Sosh (FR telco): <em>1 in 5 visitors</em> missed an exclusive offer - surfaced only by self-serve behavioural diagnostics</div>
+            <div class="note">A finding that would never have made it through a manual analyst queue. Self-serve discoverability is the unlock - same pattern transferable to Vi PMs.</div>
+            <div class="src">Source: <a href="https://www.kameleoon.com/how-orange-delivers-right-offer-right-time-ai" target="_blank">Kameleoon × Orange case study</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>Ad-hoc requests / mo</label><input type="range" min="5" max="120" value="30" data-input="selfserve.requests"><span class="val" data-display="selfserve.requests">30</span></div>
+          <div class="input-row"><label>Analyst hours / request</label><input type="range" min="1" max="12" value="4" data-input="selfserve.hours"><span class="val" data-display="selfserve.hours">4 h</span></div>
+          <div class="input-row"><label>% deflected by AI</label><input type="range" min="20" max="90" value="65" data-input="selfserve.deflection"><span class="val" data-display="selfserve.deflection">65%</span></div>
+          <div class="input-row"><label>Stakeholders self-serving</label><input type="range" min="5" max="80" value="25" data-input="selfserve.stakeholders"><span class="val" data-display="selfserve.stakeholders">25</span></div>
+          <div class="input-row"><label>Wait hours / stakeholder / mo</label><input type="range" min="1" max="20" value="6" data-input="selfserve.waitHours"><span class="val" data-display="selfserve.waitHours">6 h</span></div>
+          <div class="input-row"><label>Stakeholder salary <small>USD/yr</small></label><input type="range" min="15000" max="60000" step="1000" value="25000" data-input="selfserve.stakeholderSalary"><span class="val" data-display="selfserve.stakeholderSalary">$25K</span></div>
+        </div></div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════ CARD 6 · REPLAY UX ═══════════════════ -->
+    <article class="rich-card" data-key="replayUx">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">06</div>
+          <div>
+            <span class="num">Benefit 06</span>
+            <h3>Session Replay - UX friction discovery</h3>
+            <div class="subtitle">From "we know the funnel drops" to "we saw the exact tap that broke it"</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual revenue recovered</div>
+          <div class="v" data-val="replayUx">-</div>
+          <div class="sub">20 UX fixes shipped/yr (vs 8 today)</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features →</span>
+        <span class="feat">Session Replay</span>
+        <span class="feat alt">Frustration Score</span>
+        <span class="feat alt2">Zoning Analysis</span>
+        <span class="feat">Heatmaps</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Session Replay + Frustration Score</b> - AI auto-tags rage-clicks, dead-clicks, error sessions, hesitation.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">Analyst opens a high-friction session and watches the user's actual journey: where they hesitated, what they tapped, what failed.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">UX fixes become hypothesis-driven, not guess-and-check. Root cause is identified in 1 day instead of 5.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">+150% UX friction issues identified (8 → 20/yr) · time-to-root-cause ↓ 80% · ₹84L/yr revenue recovered.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">UX friction issues identified<small>annual rate, validated &amp; fixed</small></div>
+            <div class="from">8 / yr</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:40%"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">20 / yr</div>
+            <div class="delta">+150%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Time to root-cause UX issue<small>from drop-off observed → cause confirmed</small></div>
+            <div class="from">5 days</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:20%"></div></div></div>
+            <div class="to">1 day</div>
+            <div class="delta">↓ 80%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Hypothesis → shipped fix cycle<small>discovery → live in prod</small></div>
+            <div class="from">6 weeks</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:50%"></div></div></div>
+            <div class="to">3 weeks</div>
+            <div class="delta">↓ 50%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Frustration sessions auto-tagged<small>monthly · across 2.5B/yr at ~0.2% rate</small></div>
+            <div class="from">0</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:0"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">~5K / mo</div>
+            <div class="delta">new</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Revenue recovered (annual)</div>
+            <div class="value" data-val="replayUx">-</div>
+            <div class="desc">20 UX fixes × $5K avg recovered revenue per fix</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">UX fixes shipped / yr</div>
+            <div class="value" data-ops="replayUxFixes">20</div>
+            <div class="desc">Up from ~8 today - replay multiplies discovery rate</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Compounding LTV</div>
+            <div class="value">~3×</div>
+            <div class="desc">Each fix benefits all future cohorts - ROI compounds beyond year 1</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo m1">M1<br>Telco</div>
+          <div class="body">
+            <div class="stat">M1 (Singapore telco): <em>+143%</em> monthly conversion after replay revealed a non-clickable PDP image</div>
+            <div class="note">Single friction fix; single capability Adobe doesn't ship. Direct telco peer - identical mechanism applies to Vi's plan-selection &amp; recharge pages.</div>
+            <div class="src">Source: <a href="https://contentsquare.com/blog/how-m1-used-contentsquare-to-drive-143-monthly-conversion/" target="_blank">CSQ blog - M1 case study</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>UX friction fixes / yr</label><input type="range" min="5" max="60" value="20" data-input="replayUx.fixes"><span class="val" data-display="replayUx.fixes">20</span></div>
+          <div class="input-row"><label>Avg revenue per fix <small>USD/yr</small></label><input type="range" min="1000" max="30000" step="500" value="5000" data-input="replayUx.perFix"><span class="val" data-display="replayUx.perFix">$5K</span></div>
+        </div></div>
+      </section>
+    </article>
+
+    <!-- ═══════════════════ CARD 7 · REPLAY IT ═══════════════════ -->
+    <article class="rich-card" data-key="replayIt">
+      <header class="rc-head">
+        <div class="title-block">
+          <div class="ico">07</div>
+          <div>
+            <span class="num">Benefit 07</span>
+            <h3>Session Replay - IT incident resolution</h3>
+            <div class="subtitle">From blind log-diving to watching the exact session in 8 minutes flat</div>
+          </div>
+        </div>
+        <div class="head-value">
+          <div class="l">Annual value</div>
+          <div class="v" data-val="replayIt">-</div>
+          <div class="sub">MTTR ↓ 71% · ₹ recovered in real time</div>
+        </div>
+      </header>
+
+      <div class="rc-features">
+        <span class="ftl">CSQ features →</span>
+        <span class="feat alt">Find &amp; Fix Real-Time</span>
+        <span class="feat">Session Replay</span>
+        <span class="feat alt2">Error Analysis</span>
+        <span class="feat">Impact Quantification</span>
+      </div>
+
+      <section class="bridge-section">
+        <h4 class="section-label">The bridge</h4>
+        <div class="bridge">
+          <div class="bridge-step feat-step">
+            <span class="step-label">Feature</span>
+            <div class="step-body"><b>Find &amp; Fix Real-Time + Session Replay</b> - error sessions auto-detected, console logs &amp; network calls embedded, revenue-at-risk scored live.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Mechanism</span>
+            <div class="step-body">Incident ticket includes the replay URL + revenue impact. Engineer skips reproduction; replay <i>is</i> the reproduction.</div>
+          </div>
+          <div class="bridge-step">
+            <span class="step-label">Behaviour change</span>
+            <div class="step-body">Engineers fix from observed evidence. Low-impact bugs are correctly deprioritised based on real session count.</div>
+          </div>
+          <div class="bridge-step outcome">
+            <span class="step-label">Outcome</span>
+            <div class="step-body">MTTR ↓ 71% (4.2h → 1.2h) · revenue exposure window collapses · ~624 engineer hours saved/yr.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ops-section">
+        <h4 class="section-label">Operational metrics moved · the headline metric for IT</h4>
+        <div class="ops-table">
+          <div class="ops-row">
+            <div class="label">MTTR · revenue-impacting incidents<small>incident open → resolution deployed</small></div>
+            <div class="from">4.2 h</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:29%"></div></div></div>
+            <div class="to">1.2 h</div>
+            <div class="delta">↓ 71%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Bug reproduction time<small>part of MTTR; the bottleneck step</small></div>
+            <div class="from">90 min</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:100%"></div></div><div class="bar"><div class="fill after" style="width:9%"></div></div></div>
+            <div class="to">8 min</div>
+            <div class="delta">↓ 91%</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">First-time resolution rate<small>fixed without re-open or rollback</small></div>
+            <div class="from">60%</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:60%"></div></div><div class="bar"><div class="fill after" style="width:85%"></div></div></div>
+            <div class="to">85%</div>
+            <div class="delta">+25 pts</div>
+          </div>
+          <div class="ops-row">
+            <div class="label">Bugs correctly deprioritised<small>impact data was previously invisible</small></div>
+            <div class="from">0 / mo</div>
+            <div class="barwrap"><div class="bar"><div class="fill before" style="width:0"></div></div><div class="bar"><div class="fill after" style="width:100%"></div></div></div>
+            <div class="to">5 / mo</div>
+            <div class="delta">new</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="outcomes-section">
+        <h4 class="section-label">Business outcomes</h4>
+        <div class="outcomes-grid">
+          <div class="outcome-card primary">
+            <div class="label">Total annual value</div>
+            <div class="value" data-val="replayIt">-</div>
+            <div class="desc">Revenue recovered + engineer time saved</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Engineer hours saved</div>
+            <div class="value" data-ops="replayItHours">-</div>
+            <div class="desc">Faster repro + deprioritisation of low-impact bugs</div>
+          </div>
+          <div class="outcome-card">
+            <div class="label">Revenue exposure recovered</div>
+            <div class="value" data-ops="replayItRev">-</div>
+            <div class="desc">3h faster fix × $500/h × 8 incidents/mo × 12</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section">
+        <div class="proof-card">
+          <div class="logo verizon">Verizon</div>
+          <div class="body">
+            <div class="stat">Verizon Director of Software Dev: <em class="csqpurp">"hugely impactful in monitoring site performance &amp; errors during key timeframes"</em></div>
+            <div class="note">Read-across to Vi: payday weekends, festival recharges, cricket events. Find &amp; Fix turns aggregate spikes into a list of named, watchable, fixable sessions.</div>
+            <div class="src">Source: <a href="https://contentsquare.com/blog/contentsquare-helps-brands-boost-site-performance-revenue-with-real-time-digital-experience-insights-enhances-find-fix-solution/" target="_blank">CSQ press - Find &amp; Fix launch</a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="edit-section">
+        <button class="edit-toggle"><span>Edit assumptions</span><span class="caret">▼</span></button>
+        <div class="panel"><div class="panel-grid">
+          <div class="input-row"><label>Incidents / mo</label><input type="range" min="1" max="30" value="8" data-input="replayIt.incidents"><span class="val" data-display="replayIt.incidents">8</span></div>
+          <div class="input-row"><label>Hours faster resolution</label><input type="range" min="0.5" max="12" step="0.5" value="3" data-input="replayIt.hoursFaster"><span class="val" data-display="replayIt.hoursFaster">3 h</span></div>
+          <div class="input-row"><label>Revenue at risk / h <small>USD</small></label><input type="range" min="100" max="3000" step="100" value="500" data-input="replayIt.revPerHour"><span class="val" data-display="replayIt.revPerHour">$500</span></div>
+          <div class="input-row"><label>Engineers / incident</label><input type="range" min="1" max="6" value="2" data-input="replayIt.engineers"><span class="val" data-display="replayIt.engineers">2</span></div>
+          <div class="input-row"><label>Eng hours saved / incident</label><input type="range" min="0.5" max="8" step="0.5" value="2" data-input="replayIt.engHoursPerIncident"><span class="val" data-display="replayIt.engHoursPerIncident">2 h</span></div>
+          <div class="input-row"><label>Bugs deprioritised / mo</label><input type="range" min="0" max="20" value="5" data-input="replayIt.bugsDeprioritized"><span class="val" data-display="replayIt.bugsDeprioritized">5</span></div>
+          <div class="input-row"><label>Eng salary <small>USD/yr</small></label><input type="range" min="15000" max="60000" step="1000" value="28000" data-input="replayIt.engSalary"><span class="val" data-display="replayIt.engSalary">$28K</span></div>
+        </div></div>
+      </section>
+    </article>
+
+  </div>
+
+  <!-- ─── TAB 2 · CAPABILITY GAPS ─── -->
+  <div class="tab-pane" id="tab-gaps">
+    <div class="sec-head">
+      <h2>What Adobe structurally cannot deliver</h2>
+      <p>Not "Adobe is bad" - <b>capability gaps</b>: features that do not exist in Adobe Analytics today, regardless of effort or budget. This is the new ground Vi gains by switching.</p>
+    </div>
+    <div class="cap">
+      <div class="cap-head">
+        <div>Capability</div>
+        <div>Adobe Analytics today</div>
+        <div class="csqcol">With Contentsquare</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">1</span> Event collection</div>
+        <div class="adobe-side"><span class="x">✕</span> Manual tagging plan blocks every release. Engineers maintain hundreds of tags; missed tags = data gaps.</div>
+        <div class="csq-side"><span class="check">✓</span> <b>Smart Capture</b> records all clicks, taps, scrolls, forms, errors - no code, no plan. <b>Retroactive analysis</b> of past sessions.</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">2</span> Session replay</div>
+        <div class="adobe-side"><span class="x">✕</span> No native replay. Adobe shows aggregate funnels and drops, never the actual user session.</div>
+        <div class="csq-side"><span class="check">✓</span> <b>Session Replay</b> with auto-tagging of frustration signals, rage-clicks, error sessions. AI summarises behaviour across up to 100 sessions.</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">3</span> AI insights</div>
+        <div class="adobe-side"><span class="x">✕</span> Adobe Sensei flags anomalies - but you still investigate. No natural-language interface.</div>
+        <div class="csq-side"><span class="check">✓</span> <b>Sense Analyst</b> answers questions in plain English, generates session summaries, <b>writes optimisation recommendations</b>.</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">4</span> Zoning &amp; heatmaps</div>
+        <div class="adobe-side"><span class="x">✕</span> Add-on only via Target / 3rd-party; no native revenue-per-zone attribution.</div>
+        <div class="csq-side"><span class="check">✓</span> <b>Zoning Analysis</b> attributes engagement, exposure, &amp; revenue to every element on a page - reading rate, attractiveness, hesitation time.</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">5</span> Error → revenue link</div>
+        <div class="adobe-side"><span class="x">✕</span> JS errors are not natively quantified in revenue terms. Triage requires manual correlation.</div>
+        <div class="csq-side"><span class="check">✓</span> <b>Find &amp; Fix Real-Time</b> shows the live error, impacted sessions, and revenue at risk - automatically.</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">6</span> Self-serve for business</div>
+        <div class="adobe-side"><span class="x">✕</span> Reporting requires SQL, dashboard build skills, or an analyst-in-the-loop. PMs queue for answers.</div>
+        <div class="csq-side"><span class="check">✓</span> Plain-language questions in <b>Sense</b>, drag-and-drop journeys, pre-built telco templates.</div>
+      </div>
+      <div class="cap-row">
+        <div class="feat-name"><span class="num">7</span> Pricing model</div>
+        <div class="adobe-side"><span class="x">✕</span> Server-call / impression-based - incentives push teams to under-tag to stay in budget.</div>
+        <div class="csq-side"><span class="check">✓</span> Session-based - capturing more events doesn't cost more. <b>100% of events, always.</b></div>
+      </div>
+    </div>
+
+    <div class="sec-head" style="margin-top:32px">
+      <h2>Vi-specific friction scenarios</h2>
+      <p>The capability gaps above, translated into Vi's daily operational reality.</p>
+    </div>
+    <div class="mosaic">
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:var(--csq-bg);color:var(--csq-2)">RC</div><div class="meta"><b>Recharge flow</b><small>500K+ daily attempts</small></div></div>
+        <div class="desc"><b>Adobe:</b> Sees recharge conversion drop 42% → 38% on a Tuesday.<br/><b>CSQ:</b> Shows that on a specific Android build, the UPI redirect returns blank for 11% of users - and quantifies daily ₹ revenue leak in real time.</div>
+        <div class="feat-line"><span class="feat alt">Find &amp; Fix</span><span class="feat">Replay</span></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:var(--csq-bg);color:var(--csq-2)">PU</div><div class="meta"><b>Plan upgrade page</b><small>postpaid + OTT cross-sell</small></div></div>
+        <div class="desc"><b>Adobe:</b> Low conversion on the postpaid upgrade page.<br/><b>CSQ:</b> Heatmaps show users tapping the "compare" pill - which is decorative, not interactive. PMs see this and ship a fix the same sprint.</div>
+        <div class="feat-line"><span class="feat">Zoning</span><span class="feat alt2">Heatmaps</span></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:var(--csq-bg);color:var(--csq-2)">LO</div><div class="meta"><b>OTP &amp; login</b><small>app + web</small></div></div>
+        <div class="desc"><b>Adobe:</b> Drops are bucketed as "abandoned".<br/><b>CSQ:</b> Replay shows the OTP field hidden behind the keyboard on specific OEM devices, with the user's repeated taps captured as a frustration signal.</div>
+        <div class="feat-line"><span class="feat alt">Frustration Score</span><span class="feat">Replay</span></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:var(--csq-bg);color:var(--csq-2)">XS</div><div class="meta"><b>Add-on cross-sell</b><small>OTT, broadband bundles</small></div></div>
+        <div class="desc"><b>Adobe:</b> Reports cross-sell take-rate.<br/><b>CSQ:</b> Journeys reveal that users who view OTT bundles immediately bounce - and Sense recommends moving the bundle below plan confirmation, not before.</div>
+        <div class="feat-line"><span class="feat">Journeys</span><span class="feat">Sense recommendations</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TAB 3 · CUSTOMER PROOF ─── -->
+  <div class="tab-pane" id="tab-proof">
+    <div class="sec-head">
+      <h2>Verified customer outcomes</h2>
+      <p>Every number below is from a public Contentsquare case study, press release, or the Forrester Total Economic Impact study. Telco peers first; cross-industry proof for capabilities where telco numbers are not yet public.</p>
+    </div>
+    <div class="mosaic">
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#e6f0ff;color:#003a86">M1<br>Telco</div><div class="meta"><b>M1</b><small>Telco · Singapore</small></div></div>
+        <div class="impact">+143%</div>
+        <div class="desc">Monthly conversion lift on a product page after Session Replay revealed a non-clickable image - discovered via tap-recurrence anomaly.</div>
+        <div class="feat-line"><span class="feat">Session Replay</span><span class="feat alt2">Heatmaps</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/blog/how-m1-used-contentsquare-to-drive-143-monthly-conversion/" target="_blank">contentsquare.com - M1</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:linear-gradient(135deg,#0e1133,#3a3a6a);color:#fff">Forrester<br>TEI</div><div class="meta"><b>Forrester TEI Composite</b><small>Independent · 2023</small></div></div>
+        <div class="impact">602% ROI</div>
+        <div class="desc">3-year ROI · 6-month payback · $3.32M added profit · $3.28M friction-driven income recovered · 2,914 hours analyst productivity saved.</div>
+        <div class="feat-line"><span class="feat">Full platform</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/blog/forrester-total-economic-impact-study-finds-602-roi-with-contentsquare/" target="_blank">Forrester TEI</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#fde6e6;color:#b80000">Verizon</div><div class="meta"><b>Verizon</b><small>Telco · United States</small></div></div>
+        <div class="impact">Real-time</div>
+        <div class="desc">"Hugely impactful in monitoring site performance and errors during key holiday timeframes" - caught errors hitting <b>thousands of sessions</b> live.</div>
+        <div class="feat-line"><span class="feat alt">Find &amp; Fix</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/blog/contentsquare-helps-brands-boost-site-performance-revenue-with-real-time-digital-experience-insights-enhances-find-fix-solution/" target="_blank">CSQ press, Find &amp; Fix launch</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#e8e4ff;color:#3a116d">Virgin<br>Media O2</div><div class="meta"><b>Virgin Media O2</b><small>Telco · UK</small></div></div>
+        <div class="impact">Stat-sig</div>
+        <div class="desc">Statistically significant order-conversion uplift on "Split the Cost" broadband test + basket-urgency message - both diagnosed via CSQ + experimentation stack.</div>
+        <div class="feat-line"><span class="feat">Experimentation</span><span class="feat alt2">Journeys</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/blog/experimentation-strategy/" target="_blank">VMO2 blog</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#fff0e0;color:#cc5500">orange<sup>™</sup></div><div class="meta"><b>Orange / Sosh</b><small>Telco · France</small></div></div>
+        <div class="impact">1 in 5</div>
+        <div class="desc">Visitors missed an exclusive offer - invisible in aggregate Adobe data; surfaced via CSQ behavioural diagnostics, then validated through A/B repositioning test.</div>
+        <div class="feat-line"><span class="feat">Zoning</span><span class="feat">Experimentation</span></div>
+        <div class="src">Source: <a href="https://www.kameleoon.com/how-orange-delivers-right-offer-right-time-ai" target="_blank">Kameleoon × Orange</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#e8f5e9;color:#1b5e20">Sur La<br>Table</div><div class="meta"><b>Sur La Table</b><small>Retail · United States</small></div></div>
+        <div class="impact">+12% · +6%</div>
+        <div class="desc"><b>Migrated off Adobe Analytics to Contentsquare.</b> Same direction Vi is considering. +12% product page views, +6% overall conversion.</div>
+        <div class="feat-line"><span class="feat alt2">Adobe migration</span><span class="feat">Full platform</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/blog/contentsquare-vs-adobe/" target="_blank">CSQ vs Adobe</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#fff8e0;color:#7a5400">GoPro</div><div class="meta"><b>GoPro</b><small>Consumer Tech · Global</small></div></div>
+        <div class="impact">+80%</div>
+        <div class="desc">Conversion lift on the Hero7 PDP. <i>"Our conversion rate has never been this strong."</i> - Kathy Ando. Replay-driven PDP optimisation, relevant to Vi's plan pages.</div>
+        <div class="feat-line"><span class="feat">Journeys</span><span class="feat alt2">Heatmaps</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/customers/gopro/" target="_blank">CSQ - GoPro</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#e0f0ff;color:#003872">Spec<br>savers</div><div class="meta"><b>Specsavers</b><small>Retail · UK</small></div></div>
+        <div class="impact">+33% · +24%</div>
+        <div class="desc">+33% conversion lift on optics bookings, +24% ecommerce purchase rate, -25% bounce. Store-locator: -68% LCP, +6.5% booking CR.</div>
+        <div class="feat-line"><span class="feat alt">Speed Analysis</span><span class="feat">Find &amp; Fix</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/customers/specsavers/" target="_blank">CSQ - Specsavers</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#ffe0e0;color:#a30000">Rakuten</div><div class="meta"><b>Rakuten</b><small>Retail · Japan</small></div></div>
+        <div class="impact">+10%</div>
+        <div class="desc">Checkout conversion lift driven by CSQ-identified friction. Direct read-across for Vi's payment confirmation step.</div>
+        <div class="feat-line"><span class="feat">Replay</span><span class="feat alt2">Funnel</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/solutions/telecom/" target="_blank">CSQ Telecom</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#1c1c1c;color:#fff">The North Face</div><div class="meta"><b>The North Face</b><small>Retail · Global</small></div></div>
+        <div class="impact">+50%</div>
+        <div class="desc">CTA exposure rate increased; click-recurrence (a frustration proxy) dropped from 2.07 to 1.0 on key landing pages - discovered via autocapture + heatmaps.</div>
+        <div class="feat-line"><span class="feat">Autocapture</span><span class="feat alt2">Heatmaps</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/customers/the-north-face/" target="_blank">CSQ - North Face</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:#f0e9e0;color:#5a3d1c">Clarks</div><div class="meta"><b>Clarks</b><small>Retail · UK</small></div></div>
+        <div class="impact">+$1.1M</div>
+        <div class="desc">Additional annual revenue from friction discovery and conversion optimisation powered by Contentsquare.</div>
+        <div class="feat-line"><span class="feat alt2">Journeys</span><span class="feat">Zoning</span></div>
+        <div class="src">Source: <a href="https://contentsquare.com/solutions/telecom/" target="_blank">CSQ - Solutions</a></div>
+      </div>
+      <div class="moscard">
+        <div class="brand"><div class="logo" style="background:linear-gradient(135deg,#e60000,#7341ff);color:#fff">CSQ<br>Telco</div><div class="meta"><b>CSQ Telco Vertical Benchmark</b><small>Aggregated · global</small></div></div>
+        <div class="impact">$2.37M</div>
+        <div class="desc">Average additional online income for telco clients from <b>Design / UX optimization</b>, plus $1.09M from VoC programs.</div>
+        <div class="feat-line"><span class="feat">Replay</span><span class="feat alt">Voice of Customer</span></div>
+        <div class="src">Source: <a href="https://go.contentsquare.com/hubfs/CX/PDF%20-%20ROI%20slides%20US%20.pdf" target="_blank">CSQ ROI deck</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <b>Vi · Contentsquare Business Value Case · v2</b> · Feature → Outcome bridge · Aligned with analytics champion, May 2026 · All figures are working assumptions for internal alignment - verify final inputs with Vi before committee review.
+    <div class="links">
+      <a href="#" onclick="window.print();return false;">Print / Export PDF</a>
+      <a href="#tab-value" onclick="showTab('value')">Value Delivered</a>
+      <a href="#tab-gaps" onclick="showTab('gaps')">Capability Gaps</a>
+      <a href="#tab-proof" onclick="showTab('proof')">Customer Proof</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const DEFAULTS = {
+  tagging: { ftes:6, timePct:70, salary:20000, reduction:60 },
+  insighting: { ftes:3, timePct:80, salary:20000, efficiency:50 },
+  coverage: { revenueBase:60000000, lift:0.2 },
+  release: { releases:12, devs:8, weeks:0.5, devSalary:28000 },
+  selfserve: { requests:30, hours:4, deflection:65, stakeholders:25, waitHours:6, analystSalary:20000, stakeholderSalary:25000 },
+  replayUx: { fixes:20, perFix:5000 },
+  replayIt: { incidents:8, hoursFaster:3, revPerHour:500, engineers:2, engHoursPerIncident:2, bugsDeprioritized:5, engSalary:28000 }
+};
+const state = { currency:'INR', fxRate:84, assumptions:JSON.parse(JSON.stringify(DEFAULTS)) };
+
+function compute() {
+  const a = state.assumptions;
+  const v = {}, ops = {};
+  v.tagging = a.tagging.ftes * (a.tagging.timePct/100) * a.tagging.salary * (a.tagging.reduction/100);
+  ops.taggingHours = Math.round(a.tagging.ftes * (a.tagging.timePct/100) * 2080 * (a.tagging.reduction/100));
+  ops.taggingFte = (a.tagging.ftes * (a.tagging.timePct/100) * (a.tagging.reduction/100)).toFixed(1);
+
+  v.insighting = a.insighting.ftes * (a.insighting.timePct/100) * a.insighting.salary * (a.insighting.efficiency/100);
+  ops.insightingHours = Math.round(a.insighting.ftes * (a.insighting.timePct/100) * 2080 * (a.insighting.efficiency/100));
+
+  v.coverage = a.coverage.revenueBase * (a.coverage.lift/100);
+
+  v.release = a.release.releases * a.release.devs * a.release.weeks * (a.release.devSalary/52);
+  ops.releaseHours = Math.round(a.release.releases * a.release.devs * a.release.weeks * 40);
+
+  const analystHourly = a.selfserve.analystSalary/2080;
+  const stakeholderHourly = a.selfserve.stakeholderSalary/2080;
+  const ssA = a.selfserve.requests * a.selfserve.hours * (a.selfserve.deflection/100) * analystHourly * 12;
+  const ssB = a.selfserve.stakeholders * a.selfserve.waitHours * stakeholderHourly * 12;
+  v.selfserve = ssA + ssB;
+  ops.selfserveAnalystHours = Math.round(a.selfserve.requests * a.selfserve.hours * (a.selfserve.deflection/100) * 12);
+  ops.selfserveStakeHours = Math.round(a.selfserve.stakeholders * a.selfserve.waitHours * 12);
+
+  v.replayUx = a.replayUx.fixes * a.replayUx.perFix;
+  ops.replayUxFixes = a.replayUx.fixes;
+
+  const engHourly = a.replayIt.engSalary/2080;
+  const itRev = a.replayIt.incidents * a.replayIt.hoursFaster * a.replayIt.revPerHour * 12;
+  const itEng = a.replayIt.incidents * a.replayIt.engineers * a.replayIt.engHoursPerIncident * engHourly * 12 +
+                a.replayIt.bugsDeprioritized * 4 * engHourly * 12;
+  v.replayIt = itRev + itEng;
+  ops.replayItHours = Math.round(a.replayIt.incidents * a.replayIt.engineers * a.replayIt.engHoursPerIncident * 12 + a.replayIt.bugsDeprioritized * 4 * 12);
+  ops.replayItRev = itRev;
+
+  v.total = v.tagging + v.insighting + v.coverage + v.release + v.selfserve + v.replayUx + v.replayIt;
+  return { v, ops };
+}
+
+function fmt(usd) {
+  if (!isFinite(usd) || usd <= 0) return state.currency==='INR' ? '₹0' : '$0';
+  if (state.currency === 'INR') {
+    const inr = usd * state.fxRate;
+    if (inr >= 10000000) return '₹' + (inr/10000000).toFixed(2).replace(/\.?0+$/,'') + ' Cr';
+    if (inr >= 100000) return '₹' + (inr/100000).toFixed(1).replace(/\.0$/,'') + ' L';
+    return '₹' + Math.round(inr/1000) + 'K';
+  } else {
+    if (usd >= 1000000) return '$' + (usd/1000000).toFixed(2).replace(/\.?0+$/,'') + 'M';
+    if (usd >= 1000) return '$' + Math.round(usd/1000) + 'K';
+    return '$' + Math.round(usd);
+  }
+}
+function fmtUSD(usd) {
+  if (usd >= 1000000) return '$' + (usd/1000000).toFixed(0) + 'M';
+  if (usd >= 1000) return '$' + Math.round(usd/1000) + 'K';
+  return '$' + usd;
+}
+function fmtHours(h) {
+  if (h >= 1000) return (h/1000).toFixed(1) + 'K h';
+  return h + ' h';
+}
+
+const LABELS = {
+  tagging: { name:'Manual Tagging', cls:'seg-c1' },
+  insighting: { name:'AI Insighting', cls:'seg-c2' },
+  coverage: { name:'Event Coverage', cls:'seg-c3' },
+  release: { name:'Release Cycles', cls:'seg-c4' },
+  selfserve: { name:'AI Self-Serve', cls:'seg-c5' },
+  replayUx: { name:'Replay · UX', cls:'seg-c6' },
+  replayIt: { name:'Replay · IT', cls:'seg-c7' }
+};
+const ORDER = ['tagging','insighting','coverage','release','selfserve','replayUx','replayIt'];
+
+function render() {
+  const { v, ops } = compute();
+
+  document.querySelectorAll('[data-val]').forEach(el => {
+    const k = el.dataset.val;
+    el.textContent = fmt(v[k]);
+    el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+  });
+
+  document.querySelectorAll('[data-ops]').forEach(el => {
+    const k = el.dataset.ops;
+    if (k === 'taggingHours' || k === 'insightingHours' || k === 'releaseHours' || k === 'selfserveAnalystHours' || k === 'selfserveStakeHours' || k === 'replayItHours') {
+      el.textContent = fmtHours(ops[k]);
+    } else if (k === 'taggingFte') {
+      el.textContent = ops[k] + ' FTE';
+    } else if (k === 'replayUxFixes') {
+      el.textContent = ops[k] + ' / yr';
+    } else if (k === 'replayItRev') {
+      el.textContent = fmt(ops[k]);
+    } else {
+      el.textContent = ops[k];
+    }
+  });
+
+  const hero = document.getElementById('heroTotal');
+  hero.textContent = fmt(v.total);
+  hero.classList.remove('pop'); void hero.offsetWidth; hero.classList.add('pop');
+
+  document.getElementById('perK').textContent = fmt(v.total / 2500000);
+
+  let top = ORDER[0];
+  ORDER.forEach(k => { if (v[k] > v[top]) top = k; });
+  document.getElementById('topBenefit').textContent = LABELS[top].name;
+
+  const stack = document.getElementById('stacked');
+  const legend = document.getElementById('legend');
+  stack.innerHTML = ''; legend.innerHTML = '';
+  ORDER.forEach(k => {
+    const pct = v.total > 0 ? (v[k]/v.total*100) : 0;
+    const seg = document.createElement('div');
+    seg.className = 'seg ' + LABELS[k].cls;
+    seg.style.flex = pct;
+    seg.textContent = pct >= 7 ? Math.round(pct)+'%' : '';
+    seg.title = LABELS[k].name + ': ' + fmt(v[k]) + ' (' + pct.toFixed(1) + '%)';
+    stack.appendChild(seg);
+    const li = document.createElement('div');
+    li.className = 'li';
+    li.innerHTML = '<span class="sw '+LABELS[k].cls+'"></span><b>'+LABELS[k].name+'</b> · '+fmt(v[k])+' <span style="color:var(--muted)">('+pct.toFixed(0)+'%)</span>';
+    legend.appendChild(li);
+  });
+
+  document.querySelectorAll('[data-display]').forEach(el => {
+    const path = el.dataset.display.split('.');
+    const val = state.assumptions[path[0]][path[1]];
+    el.textContent = formatSliderVal(path, val);
+  });
+}
+
+function formatSliderVal(path, val) {
+  const k = path.join('.');
+  if (/salary|Salary/.test(k)) return fmtUSD(val);
+  if (/revenueBase/.test(k)) return '$' + (val/1000000) + 'M';
+  if (/timePct|reduction|efficiency|deflection/.test(k)) return val + '%';
+  if (/lift/.test(k)) return val.toFixed(2) + '%';
+  if (/weeks/.test(k)) return val + 'w';
+  if (/Hours|hours|hoursFaster|engHoursPerIncident|waitHours/.test(k)) return val + ' h';
+  if (/revPerHour/.test(k)) return '$' + val;
+  if (/perFix/.test(k)) return '$' + (val/1000) + 'K';
+  return val;
+}
+
+document.querySelectorAll('[data-input]').forEach(inp => {
+  inp.addEventListener('input', e => {
+    const [section, key] = e.target.dataset.input.split('.');
+    state.assumptions[section][key] = parseFloat(e.target.value);
+    render();
+  });
+});
+
+document.querySelectorAll('.edit-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  });
+});
+
+document.getElementById('ccyToggle').addEventListener('click', e => {
+  if (e.target.tagName !== 'BUTTON') return;
+  document.querySelectorAll('#ccyToggle button').forEach(b => b.classList.toggle('active', b===e.target));
+  state.currency = e.target.dataset.c;
+  render();
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  state.assumptions = JSON.parse(JSON.stringify(DEFAULTS));
+  document.querySelectorAll('[data-input]').forEach(inp => {
+    const [s,k] = inp.dataset.input.split('.');
+    inp.value = state.assumptions[s][k];
+  });
+  render();
+});
+
+function showTab(name) {
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+}
+document.getElementById('tabs').addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') showTab(e.target.dataset.tab);
+});
+
+render();
+</script>
+</body>
+</html>
